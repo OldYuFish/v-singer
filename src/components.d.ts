@@ -7,12 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ElCard: typeof import('element-plus/es')['ElCard']
-    ElCarousel: typeof import('element-plus/es')['ElCarousel']
-    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElImage: typeof import('element-plus/es')['ElImage']
-    ElRow: typeof import('element-plus/es')['ElRow']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCountdown: typeof import('element-plus/es')['ElCountdown']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElResult: typeof import('element-plus/es')['ElResult']
     Exception: typeof import('./components/Exception/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
