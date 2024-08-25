@@ -1,1 +1,3 @@
-export const clubType =["科技", "文体", "社工", "其他"];
+export const VID2VName = {
+  "3546679848470903": "雪一Yuki",
+};
