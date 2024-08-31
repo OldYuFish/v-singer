@@ -9,7 +9,6 @@ import { resolve } from "path";
 export default defineConfig(() => {
   return {
     base: "/v-singer/",
-    publicPath: "./",
     plugins: [
       vue(),
       AutoImport({
