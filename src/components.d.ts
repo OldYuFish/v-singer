@@ -24,6 +24,5 @@ declare module 'vue' {
     Exception: typeof import('./components/Exception/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Table: typeof import('./components/Table/index.vue')['default']
   }
 }
