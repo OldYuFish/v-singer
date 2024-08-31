@@ -5,7 +5,7 @@ const routes: readonly RouteRecordRaw[] = [
   {
     path: '/v-singer/:id',
     name: 'home',
-    meta: { key: 'home', relation: '0', title: '歌单', to: '' },
+    meta: { key: 'home', to: '' },
     component: () => import('@/views/common/home/index.vue'),
   },
   {
@@ -19,11 +19,6 @@ const routes: readonly RouteRecordRaw[] = [
         component: () => import('@/views/common/exception/404.vue'),
       },
     ],
-  },
-  {
-    path: '/:pathMatch(.*)',
-    name: 'non-exist',
-    redirect: 'exception/404',
   },
 ];
 

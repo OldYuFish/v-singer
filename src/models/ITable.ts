@@ -19,7 +19,11 @@ export interface ITable {
   showDetail: boolean
 }
 
-export interface ICardData {
-  name: string,
-  value: string | number,
+export interface ITableData {
+  song: string,
+  singer: string,
+  language: string,
+  type: string,
+  price: string | number,
+  description: string,
 }
