@@ -181,6 +181,14 @@ export const MusicTable: ITableData[] = [
     price: 0,
     description: "",
   },
+  {
+    song: "锦鲤抄",
+    singer: "银临",
+    language: "中文",
+    type: "古风",
+    price: 0,
+    description: "",
+  },
 ];
 
 export const Price2Tag = {
@@ -188,4 +196,5 @@ export const Price2Tag = {
   30: "rgb(42, 96, 178)",
   50: "rgb(66, 125, 158)",
   100: "rgb(226, 181, 43)",
+  198: "rgb(255, 90, 90)",
 };

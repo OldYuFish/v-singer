@@ -66,6 +66,9 @@
                 <template v-if="scope.row.price === 0">
                   <span>免费</span>
                 </template>
+                <template v-else-if="scope.row.price === 198">
+                  <span>舰限</span>
+                </template>
                 <template v-else>
                   <span>SC ￥{{ scope.row.price }}</span>
                 </template>
