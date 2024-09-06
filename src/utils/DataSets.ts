@@ -19,7 +19,7 @@ export const MusicTable: ITableData[] = [
     language: "中文",
     type: "儿歌",
     price: 0,
-    description: "BV1PSYfenEZH",
+    description: "BV1PSYfenEZH-0",
   },
   {
     song: "喜欢你",
@@ -188,6 +188,30 @@ export const MusicTable: ITableData[] = [
     type: "古风",
     price: 0,
     description: "",
+  },
+  {
+    song: "山外小楼夜听雨",
+    singer: "任然",
+    language: "中文",
+    type: "古风",
+    price: 0,
+    description: "",
+  },
+  {
+    song: "霜雪千年",
+    singer: "洛天依、乐正绫",
+    language: "中文",
+    type: "古风",
+    price: 0,
+    description: "",
+  },
+  {
+    song: "枫",
+    singer: "周杰伦",
+    language: "中文",
+    type: "抒情摇滚",
+    price: 0,
+    description: "BV1eZpuevEYp-1",
   },
 ];
 

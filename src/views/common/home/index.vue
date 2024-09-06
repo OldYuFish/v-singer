@@ -27,7 +27,7 @@
       <div class="rounded-2xl bg-opacity-40 bg-white p-4 my-2 w-full">
         <ElRow class="rounded-2xl bg-opacity-80 bg-white mb-4 p-4">
           <ElInput class="w-1/4 mx-2.5 opacity-90 text-xl" v-model="songName" size="large" placeholder="请输入歌曲名称" />
-          <ElSelect class="w-1/6 mx-2.5" v-model="singerName" size="large" placeholder="所有歌手">
+          <ElSelect class="w-1/6 mx-2.5" v-model="singerName" size="large" placeholder="所有歌手" filterable>
             <ElOption label="所有歌手" value="" />
             <ElOption v-for="(value, key) of singerOption" :label="`${key}(${value})`" :value="key" />
           </ElSelect>
@@ -80,11 +80,16 @@
               <template v-if="scope.row.description !== ''">
                 <ElLink
                   class="text-lg font-bold"
-                  :href="`https://www.bilibili.com/video/${scope.row.description}`"
+                  :href="`https://www.bilibili.com/video/${scope.row.description.split('-')[0]}`"
                   target="_blank"
                   :underline="false"
                 >
-                  翻唱投稿
+                  <template v-if="scope.row.description.split('-')[1] === '0'">
+                    翻唱投稿
+                  </template>
+                  <template v-else-if="scope.row.description.split('-')[1] === '1'">
+                    直播歌切
+                  </template>
                 </ElLink>
               </template>
             </template>
@@ -125,8 +130,16 @@ const options = () => {
   let typeOption = {};
   let priceOption = {};
   MusicTable.forEach((v) => {
-    if (!singerOption[v.singer]) singerOption[v.singer] = 1;
-    else singerOption[v.singer]++;
+    if (v.singer.split("、").length > 1) {
+      const singers = v.singer.split("、");
+      singers.forEach((val) => {
+        if (!singerOption[val]) singerOption[val] = 1;
+        else singerOption[val]++;
+      });
+    } else {
+      if (!singerOption[v.singer]) singerOption[v.singer] = 1;
+      else singerOption[v.singer]++;
+    }
     if (!languageOption[v.language]) languageOption[v.language] = 1;
     else languageOption[v.language]++;
     if (!typeOption[v.type]) typeOption[v.type] = 1;
