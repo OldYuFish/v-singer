@@ -7,17 +7,17 @@
             欢迎来到
             <ElLink
               class="text-3xl"
-              :href="`https://space.bilibili.com/${route.params.id}`"
+              :href="`https://space.bilibili.com/${id}`"
               target="_blank"
               :underline="false"
             >
-              {{ VID2VName[route.params.id as string] }}
+              {{ VID2VName[id] }}
             </ElLink>
             的歌单
           </ElText>
         </ElRow>
         <ElRow justify="center">
-          <ElText class="text-xl">共收录 {{ MusicTable.length }} 首歌曲</ElText>
+          <ElText class="text-xl">共收录 {{ MusicTable[id].length }} 首歌曲</ElText>
         </ElRow>
       </div>
     </ElCol>
@@ -44,7 +44,12 @@
             <ElOption v-for="(value, key) of priceOption" :label="key !== '0' ? `${key}(${value})` : `免费(${value})`" :value="key" />
           </ElSelect>
         </ElRow>
-        <ElTable class="rounded-xl text-lg opacity-80 font-bold" :data="filterTableData" size="large" height="660px">
+        <ElTable
+          class="rounded-xl text-lg opacity-80 font-bold"
+          :data="filterTableData"
+          :defaultSort="{ prop: 'price', order: 'ascending' }"
+          size="large"
+          height="660px">
           <template #empty>
             <div>暂时没有数据哦！</div>
           </template>
@@ -52,7 +57,7 @@
           <ElTableColumn prop="singer" label="歌手" />
           <ElTableColumn prop="language" label="语言" />
           <ElTableColumn prop="type" label="风格" />
-          <ElTableColumn prop="price" label="价格" >
+          <ElTableColumn prop="price" label="价格" sortable>
             <template #default="scope">
               <ElTag
                 class="text-lg font-light"
@@ -84,12 +89,7 @@
                   target="_blank"
                   :underline="false"
                 >
-                  <template v-if="scope.row.description.split('-')[1] === '0'">
-                    翻唱投稿
-                  </template>
-                  <template v-else-if="scope.row.description.split('-')[1] === '1'">
-                    直播歌切
-                  </template>
+                  {{ scope.row.description.split('-')[1] }}
                 </ElLink>
               </template>
             </template>
@@ -105,6 +105,7 @@ import type { ITableData } from "@/models";
 
 const route = useRoute();
 
+const id = ref(route.params.id.toString());
 const songName = ref("");
 const singerName = ref("");
 const languageName = ref("");
@@ -121,7 +122,7 @@ const filterTableData = computed(() =>
 );
 
 const tableData = reactive({
-  data: MusicTable as ITableData[]
+  data: MusicTable[id.value] as ITableData[]
 });
 
 const options = () => {
@@ -129,7 +130,7 @@ const options = () => {
   let languageOption = {};
   let typeOption = {};
   let priceOption = {};
-  MusicTable.forEach((v) => {
+  MusicTable[id.value].forEach((v) => {
     if (v.singer.split("、").length > 1) {
       const singers = v.singer.split("、");
       singers.forEach((val) => {
